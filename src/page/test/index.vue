@@ -246,13 +246,12 @@
 
 <template>
   <div id="page">
-    <div v-wechat-title="$route.meta.title"></div>
-   <mt-header title="long long long long title">
-  <router-link to="/" slot="left">
-    <mt-button icon="back">back</mt-button>
-  </router-link>
-  <mt-button icon="more" slot="right"></mt-button>
-</mt-header>
+   <mt-header title="我是首页">
+      <router-link to="/" slot="left">
+        <mt-button icon="back">back</mt-button>
+      </router-link>
+      <mt-button icon="more" slot="right"></mt-button>
+    </mt-header>
     <div class="header"  @click="klineFunc1()">
       {{ $t('home') }}
     </div>
@@ -310,8 +309,8 @@
 </template>
 
 <script>
-// import Toast from "toast";
-// import Swiper from "Swiper";
+import { Toast, Indicator } from "mint-ui";
+import Swiper from "Swiper";
 export default {
   name: "Index",
   data() {
@@ -349,16 +348,16 @@ export default {
           let self = this;
           self.Data = res.data;
           self.$nextTick(() => {
-            // self.Dom = new Swiper(self.$refs.swipeid, {
-            //   direction: "horizontal",
-            //   autoplay: true,
-            //   loop: false,
-            //   observer: true,
-            //   pagination: {
-            //     el: ".swiper-pagination"
-            //   },
-            //   observeParents: true
-            // });
+            self.Dom = new Swiper(self.$refs.swipeid, {
+              direction: "horizontal",
+              autoplay: true,
+              loop: false,
+              observer: true,
+              pagination: {
+                el: ".swiper-pagination"
+              },
+              observeParents: true
+            });
           });
         });
     },
@@ -369,11 +368,15 @@ export default {
       });
     },
     klineFunc1() {
-      this.$Toast({
-        message: "提示语句",
-        position: "middle",
-        duration: 5000
-      });
+      // Toast({
+      //   message: "提示语句",
+      //   position: "middle",
+      //   duration: 5000
+      // });
+      // Indicator.open({
+      //   text: "加载中",
+      //   spinnerType: "fading-circle"
+      // });
     },
     showPictureFunc(index) {}
   }
